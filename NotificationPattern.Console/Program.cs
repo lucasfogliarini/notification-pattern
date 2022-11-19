@@ -17,14 +17,18 @@ accountService.Transfer(transfer);
 
 if (accountService.Validator.IsValid)
 {
+    Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine($"Transferência concluída. R${transfer.Value} foram transferidos para a conta {transfer.ToAccountCpf}");
 }
 else
 {
+    Console.ForegroundColor = ConsoleColor.Red;
     ConsoleTable
       .From(accountService.Validator.Errors)
       .Write();
 }
+Console.ResetColor();
+
 
 
 
