@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPattern", "NotificationPattern\NotificationPattern.csproj", "{8F20FBD6-9ADA-4EDD-A327-52670724B23A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationPattern", "NotificationPattern\NotificationPattern.csproj", "{8F20FBD6-9ADA-4EDD-A327-52670724B23A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPattern.Tests", "NotificationPattern.Tests\NotificationPattern.Tests.csproj", "{02ABF0CA-DDE9-4061-9734-9907650F75DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationPattern.Tests", "NotificationPattern.Tests\NotificationPattern.Tests.csproj", "{02ABF0CA-DDE9-4061-9734-9907650F75DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPattern.Console", "NotificationPattern.Console\NotificationPattern.Console.csproj", "{F025E96D-941B-4408-9029-AB4B259350DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{02ABF0CA-DDE9-4061-9734-9907650F75DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02ABF0CA-DDE9-4061-9734-9907650F75DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02ABF0CA-DDE9-4061-9734-9907650F75DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F025E96D-941B-4408-9029-AB4B259350DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F025E96D-941B-4408-9029-AB4B259350DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F025E96D-941B-4408-9029-AB4B259350DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F025E96D-941B-4408-9029-AB4B259350DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

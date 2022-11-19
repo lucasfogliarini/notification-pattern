@@ -4,26 +4,22 @@ namespace NotificationPattern.Accounts
 {
     public class AccountService
     {
-        private readonly Validator _validator;
+        public Validator Validator { get; private set; }
 
         public AccountService(Validator validator)
         {
-            _validator = validator;
+            Validator = validator;
         }
 
         public void Transfer(TransferInput transfer)
         {
             transfer.FromAccount = MockDb.Accounts.FirstOrDefault(e => e.Cpf == transfer.FromAccountCpf);
             transfer.ToAccount = MockDb.Accounts.FirstOrDefault(e => e.Cpf == transfer.ToAccountCpf);
-            _validator.Validate<TransferValidator, TransferInput>(transfer);
-            if (_validator.IsValid)
+            Validator.Validate<TransferValidator, TransferInput>(transfer);
+            if (Validator.IsValid)
             {
                 transfer.FromAccount.Balance -= transfer.Value;
                 transfer.ToAccount.Balance += transfer.Value;
-            }
-            else
-            {
-                //
             }
         }
     }
