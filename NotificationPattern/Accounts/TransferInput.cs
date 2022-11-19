@@ -1,4 +1,4 @@
-﻿namespace NotificationPattern
+﻿namespace NotificationPattern.Accounts
 {
     public class TransferInput
     {

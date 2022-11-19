@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using NotificationPattern.Accounts;
 
 namespace NotificationPattern.Validators
 {

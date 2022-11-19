@@ -1,3 +1,4 @@
+using NotificationPattern.Accounts;
 using NotificationPattern.Validators;
 
 namespace NotificationPattern.Tests
