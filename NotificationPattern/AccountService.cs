@@ -1,8 +1,6 @@
-﻿using FluentValidator;
-using FluentValidator.Validation;
-using System.Security.Principal;
+﻿using NotificationPattern.Contracts;
 
-namespace notification_pattern
+namespace NotificationPattern
 {
     public class AccountService
     {
@@ -15,30 +13,9 @@ namespace notification_pattern
 
         public void Transfer(TransferInput transfer)
         {
-            var account = MockDb.Accounts.Where(e => e.Cpf == transfer.FromAccountCpf);
+            transfer.FromAccount = MockDb.Accounts.FirstOrDefault(e => e.Cpf == transfer.FromAccountCpf);
+            transfer.ToAccount = MockDb.Accounts.FirstOrDefault(e => e.Cpf == transfer.FromAccountCpf);
             _validator.Validate<TransferContract>(transfer);
-        }
-    }
-
-    public class TransferContract : ValidationContract
-    {
-        public TransferContract(TransferInput transfer)
-        {
-            IsNotNullOrEmpty(transfer.FromAccountCpf, nameof(transfer.FromAccountCpf), "FromAccountCpf")
-            .IsNotNullOrEmpty(transfer.ToAccountCpf, nameof(transfer.ToAccountCpf), "ToAccountCpf")
-            .IsGreaterThan(0, transfer.Value, nameof(transfer.Value), "Value")
-            .IsNotNull(transfer.FromAccount, nameof(transfer.FromAccount), "FromAccount")
-            .IsGreaterOrEqualsThan(transfer.Value, transfer.FromAccount.Balance, nameof(transfer.FromAccount?.Balance), "Value")
-            .IsNotNull(transfer.ToAccount, nameof(transfer.ToAccount), "ToAccount");
-        }
-    }
-
-    public class Validator : Notifiable
-    {
-        public void Validate<TContract>(object value) where TContract : ValidationContract
-        {
-            var contract = (TContract)Activator.CreateInstance(typeof(TContract), value);
-            AddNotifications(contract);
         }
     }
 }

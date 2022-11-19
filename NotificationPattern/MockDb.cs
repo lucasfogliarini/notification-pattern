@@ -1,4 +1,4 @@
-﻿namespace notification_pattern
+﻿namespace NotificationPattern
 {
     internal static class MockDb
     {

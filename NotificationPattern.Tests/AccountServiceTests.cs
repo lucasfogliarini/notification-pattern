@@ -1,18 +1,22 @@
-namespace notification_pattern.Tests
+using NotificationPattern.Contracts;
+
+namespace NotificationPattern.Tests
 {
     public class AccountServiceTests
     {
         [Fact]
-        public void Test1()
+        public void Transfer()
         {
             var validator = new Validator();
             var transfer = new TransferInput 
             { 
-                FromAccountCpf = "",
-                ToAccountCpf = "",
-                Value = 50
+                FromAccountCpf = "51831697050",
+                ToAccountCpf = "53158856077",
+                Value = 1,
             };
             new AccountService(validator).Transfer(transfer);
+
+            var noti = validator.Notifications;
 
         }
     }
