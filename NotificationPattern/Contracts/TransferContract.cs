@@ -6,9 +6,9 @@ namespace NotificationPattern.Contracts
     {
         public TransferContract(TransferInput transfer)
         {
-            IsNotNullOrEmpty(transfer.FromAccountCpf, nameof(TransferInput.FromAccountCpf), "FromAccountCpf não pode ser vazio.");
-            IsNotNullOrEmpty(transfer.ToAccountCpf, nameof(TransferInput.ToAccountCpf), "ToAccountCpf não pode ser vazio.");
-            IsGreaterThan(transfer.Value, 0, nameof(TransferInput.Value), "Value não pode ser menor do que 0.");
+            IsNotNullOrEmpty(transfer.FromAccountCpf, nameof(TransferInput.FromAccountCpf), "FromAccountCpf deve conter valor.");
+            IsNotNullOrEmpty(transfer.ToAccountCpf, nameof(TransferInput.ToAccountCpf), "ToAccountCpf deve conter valor.");
+            IsGreaterThan(transfer.Value, 0, nameof(TransferInput.Value), "Value deve ser maior do que 0.");
 
             string accountNotFoundMessage = $"Não foi encontrado nenhuma conta com o cpf informado";
             IsNotNull(transfer.FromAccount, nameof(TransferInput.FromAccountCpf), $"{accountNotFoundMessage} ({transfer.FromAccountCpf})");
@@ -16,7 +16,7 @@ namespace NotificationPattern.Contracts
 
             if (transfer.FromAccount != null)
             {
-                IsGreaterOrEqualsThan(transfer.Value, transfer.FromAccount.Balance, nameof(Account.Balance), "FromAccount.Balance não pode ser menor do que o valor de transferência.");
+                IsGreaterOrEqualsThan(transfer.FromAccount.Balance, transfer.Value, nameof(Account.Balance), $"FromAccount.Balance ({transfer.FromAccount.Balance}) deve ser maior ou igual ao valor de transferência. ({transfer.Value})");
             }
         }
     }

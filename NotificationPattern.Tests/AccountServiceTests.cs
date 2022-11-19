@@ -12,7 +12,7 @@ namespace NotificationPattern.Tests
             { 
                 FromAccountCpf = "51831697050",
                 ToAccountCpf = "53158856077",
-                Value = 1,
+                Value = 10,
             };
             new AccountService(validator).Transfer(transfer);
 
