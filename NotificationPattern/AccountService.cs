@@ -1,4 +1,4 @@
-﻿using NotificationPattern.Contracts;
+﻿using NotificationPattern.Validators;
 
 namespace NotificationPattern
 {
@@ -15,11 +15,15 @@ namespace NotificationPattern
         {
             transfer.FromAccount = MockDb.Accounts.FirstOrDefault(e => e.Cpf == transfer.FromAccountCpf);
             transfer.ToAccount = MockDb.Accounts.FirstOrDefault(e => e.Cpf == transfer.ToAccountCpf);
-            _validator.Validate<TransferContract>(transfer);
-            if(_validator.Valid)
+            _validator.Validate<TransferValidator, TransferInput>(transfer);
+            if(_validator.IsValid)
             {
                 transfer.FromAccount.Balance -= transfer.Value;
                 transfer.ToAccount.Balance += transfer.Value;
+            }
+            else
+            {
+                //
             }
         }
     }
