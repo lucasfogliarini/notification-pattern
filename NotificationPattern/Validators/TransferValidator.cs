@@ -7,9 +7,9 @@ namespace NotificationPattern.Validators
     {
         public TransferValidator()
         {
-            RuleFor(e => e.FromAccountCpf).NotEmpty().WithMessage("FromAccountCpf deve conter valor.");
-            RuleFor(e => e.ToAccountCpf).NotEmpty().WithMessage("ToAccountCpf deve conter valor.");
-            RuleFor(e => e.Value).GreaterThan(0).WithMessage("Value deve ser maior do que 0.");
+            RuleFor(e => e.FromAccountCpf).Length(11).WithMessage("CPF de origem deve ter exatamente 11 caracteres.");
+            RuleFor(e => e.ToAccountCpf).Length(11).WithMessage("CPF de destino deve exatamente 11 caracteres.");
+            RuleFor(e => e.Value).GreaterThan(0).WithMessage("Valor deve ser maior do que 0.");
 
             string accountNotFoundMessage = $"Não foi encontrado nenhuma conta com o cpf informado";
             RuleFor(e => e.FromAccount).NotEmpty().WithMessage(e=>$"{accountNotFoundMessage} ({e.FromAccountCpf})");
@@ -17,7 +17,7 @@ namespace NotificationPattern.Validators
 
             When(e => e.FromAccount != null, () =>
             {
-                RuleFor(e => e.FromAccount.Balance).GreaterThanOrEqualTo(e=>e.Value).WithMessage(e=> $"FromAccount.Balance ({e.FromAccount.Balance}) deve ser maior ou igual ao valor de transferência. ({e.Value})");
+                RuleFor(e => e.FromAccount.Balance).GreaterThanOrEqualTo(e=>e.Value).WithMessage(e=> $"O saldo da conta (R${e.FromAccount.Balance}) deve ser maior ou igual ao valor de transferência. (R${e.Value})");
             });
         }
     }

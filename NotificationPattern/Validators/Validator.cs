@@ -13,6 +13,11 @@ namespace NotificationPattern.Validators
 
             Errors.AddRange(errors);
         }
+
+        public void AddError(string errorMessage, string propertyName)
+        {
+            Errors.Add(new ValidationError(errorMessage, propertyName));
+        }
     }
     public class ValidationError
     {
